@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "BaselineML"
+version = "0.0.1"
+authors = [
+  { name="Hao-Wei Pang", email="hwpang@mit.edu" },
+]
+description = "Implementation of various machine learning algorithms for practice"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.7"
+
+[tool.setuptools]
+packages = ["baseline"]
+
+[project.urls]
+Homepage = "https://github.com/hwpang/BaselineML"
