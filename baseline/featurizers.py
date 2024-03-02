@@ -20,7 +20,7 @@ class MordredFeaturizer(object):
         self.kwargs = kwargs
 
     def __call__(self, mol):
-        calc = Calculator(descriptors)
+        calc = Calculator(descriptors, **self.kwargs)
         return np.array(calc(mol))
 
 

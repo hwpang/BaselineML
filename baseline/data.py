@@ -105,3 +105,14 @@ class MoleculeDataset(torch.utils.data.Dataset):
         """
         self.features = self.features.to(device)
         self.labels = self.labels.to(device)
+
+def filter_features(datasets):
+    """
+    Filter NaN features.
+    """
+    nan_indices = np.array([False] * datasets[0].features.shape[1])
+    for dataset in datasets:
+        nan_indices = np.logical_or(nan_indices, np.isnan(dataset.features).any(axis=0))
+    for dataset in datasets:
+        dataset.features = dataset.features[:, ~nan_indices]
+    return datasets
