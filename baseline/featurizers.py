@@ -4,7 +4,7 @@ from mordred import Calculator, descriptors
 from baseline.utils import get_fingerprint
 
 
-class MorganFingerprints(object):
+class MorganFeaturizer(object):
     def __init__(self, count_based=True, **kwargs):
         self.count_based = count_based
         self.kwargs = kwargs
@@ -15,7 +15,7 @@ class MorganFingerprints(object):
         )
 
 
-class MordredDescriptors(object):
+class MordredFeaturizer(object):
     def __init__(self, **kwargs):
         self.kwargs = kwargs
 
@@ -25,6 +25,6 @@ class MordredDescriptors(object):
 
 
 FEATURIZERS = {
-    "morgan": MorganFingerprints,
-    "mordred": MordredDescriptors,
+    "morgan": MorganFeaturizer,
+    "mordred": MordredFeaturizer,
 }

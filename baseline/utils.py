@@ -1,6 +1,8 @@
 from rdkit import Chem
 from rdkit.Chem import rdFingerprintGenerator
 
+from baseline.data import MoleculeDatapoint
+
 
 def make_rdkit_mol(smi):
     return Chem.MolFromSmiles(smi)

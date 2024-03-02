@@ -7,7 +7,7 @@ from baseline.data import MoleculeDataset, MoleculeDatapoint
 from baseline.models import FeedForwardNetwork, train_one_epoch, evaluate, MODELS
 from baseline.splits import split_data, SPLIT_METHODS
 from baseline.utils import get_fingerprint, make_rdkit_mol
-from baseline.featurizer import FEATURIZERS
+from baseline.featurizers import FEATURIZERS
 
 
 def get_datapoints(featurizer):
