@@ -66,6 +66,7 @@ class MoleculeDataset(torch.utils.data.Dataset):
             pca = PCA(n_components=n_components)
             pca.fit(self.features)
         self.features = pca.transform(self.features)
+        self.features = torch.from_numpy(self.features).float()
         return pca
 
     def normalize_labels(self, scaler=None):

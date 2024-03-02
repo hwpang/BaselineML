@@ -18,6 +18,12 @@ def split_data(
 
         case "random":
 
+            split_sizes_tmp = list(split_sizes)
+            for i, split_size in enumerate(split_sizes):
+                if split_size == 0.0:
+                    split_sizes_tmp[i] = 1e-10
+            split_sizes = split_sizes_tmp
+
             train_val_inds, test_inds = train_test_split(
                 range(len(datapoints)),
                 test_size=split_sizes[2],
