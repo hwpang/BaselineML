@@ -1,6 +1,7 @@
 import numpy as np
-from sklearn.preprocessing import StandardScaler
 import torch
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 
 
 class MoleculeDatapoint:
@@ -52,11 +53,20 @@ class MoleculeDataset(torch.utils.data.Dataset):
         """
         if scaler is None:
             scaler = StandardScaler()
-            scaler.fit(self.unscaled_features)
-        self.features = scaler.transform(self.unscaled_features)
+            scaler.fit(self.features)
+        self.features = scaler.transform(self.features)
         self.features = torch.from_numpy(self.features).float()
-        self.feature_scaler = scaler
         return scaler
+    
+    def reduce_features(self, pca=None, n_components=30):
+        """
+        Reduce features using PCA.
+        """
+        if pca is None:
+            pca = PCA(n_components=n_components)
+            pca.fit(self.features)
+        self.features = pca.transform(self.features)
+        return pca
 
     def normalize_labels(self, scaler=None):
         """
@@ -67,8 +77,26 @@ class MoleculeDataset(torch.utils.data.Dataset):
             scaler.fit(self.unscaled_labels)
         self.labels = scaler.transform(self.unscaled_labels)
         self.labels = torch.from_numpy(self.labels).float()
-        self.label_scaler = scaler
         return scaler
+    
+    def reset_features(self):
+        """
+        Reset features to unscaled features.
+        """
+        self.features = self.unscaled_features
+
+    def reset_labels(self):
+        """
+        Reset labels to unscaled labels.
+        """
+        self.labels = self.unscaled_labels
+
+    def reset(self):
+        """
+        Reset features and labels to unscaled features and labels.
+        """
+        self.reset_features()
+        self.reset_labels()
 
     def to(self, device):
         """
