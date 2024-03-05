@@ -110,9 +110,11 @@ def filter_features(datasets):
     """
     Filter NaN features.
     """
-    nan_indices = np.array([False] * datasets[0].features.shape[1])
+    nan_indices = torch.tensor([False] * datasets[0].features.shape[1])
     for dataset in datasets:
-        nan_indices = np.logical_or(nan_indices, np.isnan(dataset.features).any(axis=0))
+        nan_indices = torch.logical_or(nan_indices, torch.any(torch.isnan(dataset.features), dim=0))
     for dataset in datasets:
-        dataset.features = dataset.features[:, ~nan_indices]
+        features = dataset.features[:, ~nan_indices]
+        dataset.features = None
+        dataset.features = features
     return datasets
