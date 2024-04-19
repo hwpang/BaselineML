@@ -1,11 +1,14 @@
 Applying various baseline machine learning algorithms for practice
 
-- [] splitting methods
-    - [] random split
-    - [] scaffold split
-    - [] cluster split
+- Splitting methods
+    - [ ] random split
+    - [ ] scaffold split
+    - [ ] cluster split
 
-- [] machine learning algorithms
-    - [] K-nearest-neighbor
-    - [] support vector machine
-    - [] FFN
+- Machine learning algorithms
+    - [ ] K-nearest-neighbor
+    - [ ] support vector machine
+    - [ ] FFN
+    - [x] Gaussian processes
+    - [ ] Gaussian Mixture Models
+    - [ ] Dirichlet processes
